@@ -49,6 +49,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupConstraints()
+        
     }
     
     // MARK: View Build
@@ -63,6 +64,20 @@ final class HomeViewController: UIViewController {
         // Estilos
         self.view.backgroundColor = UIColor(red: 218/255, green: 244/255, blue: 254/255, alpha: 1.00)
         
+        //Funcion boton
+        startButton.addTarget(self, action: #selector(buttonPressed), for: .touchDown)
+        
+    }
+    
+    @objc func buttonPressed () {
+        let sc = ActivitiesViewController()
+        self.navigationController?.pushViewController(sc, animated: true)
+        self.navigationItem.backButtonTitle = ""
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Arial Bold", size: 30)!]
+       
+        //self.navigationController?.navigationBar.barTintColor = UIColor (red: 77/255, green: 152/255, blue: 247/255, alpha: 1.0)
+
     }
     
     private func setupConstraints(){
@@ -89,5 +104,6 @@ final class HomeViewController: UIViewController {
             startButton.heightAnchor.constraint(equalToConstant: 48),
         ])
     }
+    
     
 }
