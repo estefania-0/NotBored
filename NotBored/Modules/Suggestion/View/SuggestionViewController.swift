@@ -122,8 +122,6 @@ class SuggestionViewController: UIViewController {
         setupConstraints()
         
         let service = SuggestionService.shared
-        service.setParticipants(participants: 2)
-        service.setCategory(category: "recreational")
         
         self.viewModel = SuggestionModel(service: service, delegate: self)
         self.viewModel?.setNewActivity()

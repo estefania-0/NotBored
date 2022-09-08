@@ -51,7 +51,7 @@ final class SuggestionService {
         
         var parameters : [String: String] = [:]
         if category != nil {
-            parameters["type"] = "\(category!)"
+            parameters["type"] = "\(category!.lowercased())"
         }
         
         //parameters["participants"] = "\(participants)"

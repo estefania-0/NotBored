@@ -67,7 +67,10 @@ class ActivitiesViewController: UIViewController, UITableViewDataSource, UITable
     @objc func selectorX() {}
     
     @objc private func onRightButtonBeenTaped(){
-        print("Been tapped!")
+        let service = SuggestionService.shared
+        service.setCategory(category: nil)
+        let sc = SuggestionViewController()
+        self.navigationController?.pushViewController(sc, animated: true)
     }
     
     // MARK: Metodos TableView
@@ -92,5 +95,10 @@ class ActivitiesViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = house[indexPath.row]
         print("CELL: \(model.title)")
+        
+        let service = SuggestionService.shared
+        service.setCategory(category: "\(model.title)")
+        let sc = SuggestionViewController()
+        self.navigationController?.pushViewController(sc, animated: true)
     }
 }
