@@ -70,6 +70,10 @@ final class HomeViewController: UIViewController {
     }
     
     @objc func buttonPressed () {
+        
+        let service = SuggestionService.shared
+        service.setParticipants(participants: 1)
+        
         let sc = ActivitiesViewController()
         self.navigationController?.pushViewController(sc, animated: true)
         self.navigationItem.backButtonTitle = ""
