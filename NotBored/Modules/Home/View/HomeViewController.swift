@@ -9,6 +9,18 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
+    private lazy var scrollView: UIScrollView = {
+        let aScrollView = UIScrollView()
+        aScrollView.translatesAutoresizingMaskIntoConstraints = false
+        return aScrollView
+    }()
+    
+    private lazy var contentView: UIView = {
+        let aView = UIView()
+        aView.translatesAutoresizingMaskIntoConstraints = false
+        return aView
+    }()
+    
     private lazy var titleLabel: UILabel = {
         let aLabel = UILabel()
         aLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -30,6 +42,8 @@ final class HomeViewController: UIViewController {
     
     private lazy var participantsTextField: UITextField = {
         let aTextField = UITextField()
+        aTextField.placeholder = "How many participants?"
+        aTextField.keyboardType = .numberPad
         aTextField.translatesAutoresizingMaskIntoConstraints = false
         aTextField.font = UIFont.systemFont(ofSize: 15)
         aTextField.borderStyle = UITextField.BorderStyle.roundedRect
@@ -45,6 +59,15 @@ final class HomeViewController: UIViewController {
         return aButton
     }()
     
+    private lazy var tycButton: UIButton = {
+        let aButton = UIButton()
+        aButton.translatesAutoresizingMaskIntoConstraints = false
+        aButton.setTitle("Terms and Conditions", for: .normal)
+        aButton.setTitleColor(UIColor .black, for: .normal)
+
+        return aButton
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -55,24 +78,27 @@ final class HomeViewController: UIViewController {
     // MARK: View Build
     private func setupView(){
         
-        // Agregar vistas a la vista principal del view controller
-        self.view.addSubview(titleLabel)
-        self.view.addSubview(participantsLabel)
-        self.view.addSubview(participantsTextField)
-        self.view.addSubview(startButton)
+        self.view.addSubview(scrollView)
+        self.scrollView.addSubview(contentView)
+        self.contentView.addSubview(titleLabel)
+        self.contentView.addSubview(participantsLabel)
+        self.contentView.addSubview(participantsTextField)
+        self.contentView.addSubview(startButton)
+        self.contentView.addSubview(tycButton)
         
-        // Estilos
         self.view.backgroundColor = UIColor(red: 218/255, green: 244/255, blue: 254/255, alpha: 1.00)
         
-        //Funcion boton
         startButton.addTarget(self, action: #selector(buttonPressed), for: .touchDown)
+
+        tycButton.addTarget(self, action: #selector(tycPressed), for: .touchDown)
         
     }
     
     @objc func buttonPressed () {
         
         let service = SuggestionService.shared
-        service.setParticipants(participants: 1)
+        guard let number = participantsTextField.text else { return }
+        service.setParticipants(participants: Int(number)!)
         
         let sc = ActivitiesViewController()
         self.navigationController?.pushViewController(sc, animated: true)
@@ -82,28 +108,50 @@ final class HomeViewController: UIViewController {
 
     }
     
+    @objc func tycPressed () {
+        let tycc = TyCViewController()
+        self.present(tycc, animated: true)
+    }
+    
     private func setupConstraints(){
         NSLayoutConstraint.activate([
             
-            // Constraints de label principal
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant:70),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:  16),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -16),
             
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            
+            contentView.heightAnchor.constraint(equalToConstant: 600),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+
+            titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant:70),
+            titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant:  16),
+            titleLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant:  -16),
+
             participantsLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 60),
-            participantsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:  16),
-            participantsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -16),
-            
+            participantsLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant:  16),
+            participantsLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant:  -16),
+
             participantsTextField.topAnchor.constraint(equalTo: participantsLabel.bottomAnchor, constant: 8),
-            participantsTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:  16),
-            participantsTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -16),
+            participantsTextField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant:  16),
+            participantsTextField.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant:  -16),
             participantsTextField.heightAnchor.constraint(equalToConstant: 40),
-            
-            startButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16),
-            startButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            startButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -26),
+
+            startButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,constant: 16),
+            startButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
+            startButton.topAnchor.constraint(equalTo: participantsTextField.bottomAnchor, constant: 26),
             startButton.heightAnchor.constraint(equalToConstant: 48),
+            
+            tycButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,constant: 16),
+            tycButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            tycButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 36),
+            tycButton.heightAnchor.constraint(equalToConstant: 48),
         ])
     }
     
