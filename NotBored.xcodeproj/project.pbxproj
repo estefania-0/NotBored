@@ -22,6 +22,8 @@
 		1FED8EA328CA1779007468A2 /* SuggestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FED8EA228CA1779007468A2 /* SuggestionService.swift */; };
 		1FED8EA628CA1BF6007468A2 /* SuggestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FED8EA528CA1BF6007468A2 /* SuggestionModel.swift */; };
 		7F9D6685B55D10823A4D4860 /* Pods_NotBored.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D7BF9E9434AF2DFBAC38AA /* Pods_NotBored.framework */; };
+		DA82595F28CB8CFF00D51D99 /* TyCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA82595E28CB8CFF00D51D99 /* TyCViewController.swift */; };
+		DA82596128CB8D1700D51D99 /* TyCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA82596028CB8D1700D51D99 /* TyCView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		1FED8EA228CA1779007468A2 /* SuggestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionService.swift; sourceTree = "<group>"; };
 		1FED8EA528CA1BF6007468A2 /* SuggestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionModel.swift; sourceTree = "<group>"; };
 		89D7BF9E9434AF2DFBAC38AA /* Pods_NotBored.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotBored.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA82595E28CB8CFF00D51D99 /* TyCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TyCViewController.swift; sourceTree = "<group>"; };
+		DA82596028CB8D1700D51D99 /* TyCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TyCView.swift; sourceTree = "<group>"; };
 		DE126CE921173ECAF75C9A6D /* Pods-NotBored.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotBored.debug.xcconfig"; path = "Target Support Files/Pods-NotBored/Pods-NotBored.debug.xcconfig"; sourceTree = "<group>"; };
 		F2CF8C09E875833F14B15D3D /* Pods-NotBored.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotBored.release.xcconfig"; path = "Target Support Files/Pods-NotBored/Pods-NotBored.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,13 +69,6 @@
 				F2CF8C09E875833F14B15D3D /* Pods-NotBored.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		193A131428CA541100E8D55A /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		193A131528CA542400E8D55A /* Model */ = {
@@ -112,7 +109,6 @@
 			isa = PBXGroup;
 			children = (
 				193A131528CA542400E8D55A /* Model */,
-				193A131428CA541100E8D55A /* Services */,
 				19DDF38428C6272C00566CB6 /* Modules */,
 				19DDF37028C625E600566CB6 /* AppDelegate.swift */,
 				19DDF37228C625E600566CB6 /* SceneDelegate.swift */,
@@ -138,6 +134,7 @@
 		19DDF38528C6274100566CB6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				DA82595D28CB8C4900D51D99 /* TyC */,
 				19DDF38628C6274A00566CB6 /* View */,
 			);
 			path = Home;
@@ -209,6 +206,15 @@
 				89D7BF9E9434AF2DFBAC38AA /* Pods_NotBored.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA82595D28CB8C4900D51D99 /* TyC */ = {
+			isa = PBXGroup;
+			children = (
+				DA82595E28CB8CFF00D51D99 /* TyCViewController.swift */,
+				DA82596028CB8D1700D51D99 /* TyCView.swift */,
+			);
+			path = TyC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,11 +337,13 @@
 				19DDF38C28C7C89700566CB6 /* ActivitiesTableViewController.swift in Sources */,
 				19DDF37128C625E600566CB6 /* AppDelegate.swift in Sources */,
 				19DDF37328C625E600566CB6 /* SceneDelegate.swift in Sources */,
+				DA82595F28CB8CFF00D51D99 /* TyCViewController.swift in Sources */,
 				19DDF38E28C8C9BC00566CB6 /* ActivitiesTableViewCell.swift in Sources */,
 				19DDF38828C6277200566CB6 /* HomeViewController.swift in Sources */,
 				1FED8EA628CA1BF6007468A2 /* SuggestionModel.swift in Sources */,
 				1FCFB69228C90616005679F8 /* SuggestionViewController.swift in Sources */,
 				193A131C28CAFFD900E8D55A /* Activities.swift in Sources */,
+				DA82596128CB8D1700D51D99 /* TyCView.swift in Sources */,
 				1FED8EA328CA1779007468A2 /* SuggestionService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
