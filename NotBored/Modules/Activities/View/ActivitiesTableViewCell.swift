@@ -37,8 +37,6 @@ class ActivitiesTableViewCell: UITableViewCell {
                 deviceNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
                 deviceNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
                 
-                deviceImageView.heightAnchor.constraint(equalToConstant: 40),
-                
                 deviceImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
                 deviceImageView.centerYAnchor.constraint(equalTo: deviceNameLabel.centerYAnchor)
             ])
@@ -48,7 +46,7 @@ class ActivitiesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(model: Device) {
+    func configure(model: Activities) {
             deviceImageView.image = UIImage(systemName: model.imageName)
             deviceNameLabel.text = model.title
     }

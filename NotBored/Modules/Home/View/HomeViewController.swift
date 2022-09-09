@@ -79,8 +79,6 @@ final class HomeViewController: UIViewController {
         self.navigationItem.backButtonTitle = ""
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Arial Bold", size: 30)!]
-       
-        //self.navigationController?.navigationBar.barTintColor = UIColor (red: 77/255, green: 152/255, blue: 247/255, alpha: 1.0)
 
     }
     

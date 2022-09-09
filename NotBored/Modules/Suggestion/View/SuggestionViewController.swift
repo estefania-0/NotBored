@@ -147,7 +147,6 @@ class SuggestionViewController: UIViewController {
         
         contentView.addSubview(tryAnotherButton)
 
-        // Estilos
         self.view.backgroundColor = UIColor(red: 218/255, green: 244/255, blue: 254/255, alpha: 1.00)
 
     }
