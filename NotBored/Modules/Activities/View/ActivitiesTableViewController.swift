@@ -24,8 +24,6 @@ class ActivitiesViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: Nav Bar
     override func viewWillLayoutSubviews() {
         self.navigationItem.title = "Activities"
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 20/255, green: 156/255, blue: 248/255, alpha: 1.00) //Agregar
-        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 20/255, green: 156/255, blue: 248/255, alpha: 1.00) //agregar
         self.navigationItem.rightBarButtonItem = UIBarButtonItem( image: UIImage(systemName: "shuffle"), style: .done, target: self, action: #selector(onRightButtonBeenTaped))
         self.navigationItem.backButtonTitle = ""
     }
@@ -37,7 +35,6 @@ class ActivitiesViewController: UIViewController, UITableViewDataSource, UITable
         self.navigationController?.pushViewController(sc, animated: true)
     }
     
-
     private let devicesTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +44,7 @@ class ActivitiesViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        devicesTableView.backgroundColor = UIColor(red: 218/255, green: 244/255, blue: 254/255, alpha: 1.00)
+        devicesTableView.backgroundColor = UIColor(named: "Background")
         
         devicesTableView.separatorColor = UIColor.black
         devicesTableView.dataSource = self
@@ -65,12 +62,10 @@ class ActivitiesViewController: UIViewController, UITableViewDataSource, UITable
             devicesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-                                        
     
     // MARK: Metodos TableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         activitiesList.count
     }
     
@@ -82,6 +77,10 @@ class ActivitiesViewController: UIViewController, UITableViewDataSource, UITable
         cell.configure(model: model)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+       return 90
     }
     
     // MARK: Metodo Delegate

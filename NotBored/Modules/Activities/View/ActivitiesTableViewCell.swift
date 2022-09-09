@@ -15,13 +15,13 @@ class ActivitiesTableViewCell: UITableViewCell {
             imageView.contentMode = .scaleAspectFit
             imageView.translatesAutoresizingMaskIntoConstraints = false
             return imageView
-        }()
+    }()
     
     private let deviceNameLabel: UILabel = {
-            let label = UILabel()
-            label.font = .systemFont(ofSize: 24)
-            label.translatesAutoresizingMaskIntoConstraints = false
-            return label
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 24)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
