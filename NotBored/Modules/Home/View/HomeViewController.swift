@@ -42,6 +42,8 @@ final class HomeViewController: UIViewController {
     
     private lazy var participantsTextField: UITextField = {
         let aTextField = UITextField()
+        aTextField.placeholder = "How many participants?"
+        aTextField.keyboardType = .numberPad
         aTextField.translatesAutoresizingMaskIntoConstraints = false
         aTextField.font = UIFont.systemFont(ofSize: 15)
         aTextField.borderStyle = UITextField.BorderStyle.roundedRect
@@ -95,7 +97,8 @@ final class HomeViewController: UIViewController {
     @objc func buttonPressed () {
         
         let service = SuggestionService.shared
-        service.setParticipants(participants: 1)
+        guard let number = participantsTextField.text else { return }
+        service.setParticipants(participants: Int(number)!)
         
         let sc = ActivitiesViewController()
         self.navigationController?.pushViewController(sc, animated: true)
