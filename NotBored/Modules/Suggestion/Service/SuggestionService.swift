@@ -47,7 +47,7 @@ final class SuggestionService {
         return result
     }
     
-    func getActivity(success: @escaping (Activity)->()) -> Void{
+    func getActivity(success: @escaping (Activity)->(), onError: @escaping (String)->()) -> Void{
         
         var parameters : [String: String] = [:]
         if category != nil {
@@ -69,9 +69,11 @@ final class SuggestionService {
                         success(activity)
                     }
                 } catch {
+                    onError("No activities")
                     print("catch")
                 }
             case .failure(let error):
+                onError(error.errorDescription!)
                 print(error)
             }
         }

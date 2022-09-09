@@ -49,14 +49,14 @@ class SuggestionModel{
     
     func setNewActivity(){
         let activity = self.service.getActivity { activity in
-            
             let activityDto : ActivityDto = ActivityDto(activity: activity.activity, type: activity.type, participants: activity.participants, price: setPrice(activity.price))
-            
+
             self.delegate.setActivity(activityDto)
-            
+
             let title = self.service.getCategory()
             self.delegate.setTitle(title: title.catergory, hiddenType: title.hiddenCategory)
-            
+        } onError: { message in
+            self.delegate.showError(errorMessage: message)
         }
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 protocol SuggestionDelegate{
     func setActivity(_ activity: ActivityDto)
     func setTitle(title: String, hiddenType: Bool)
+    func showError(errorMessage : String)
 }
 
 class SuggestionViewController: UIViewController {
@@ -271,5 +272,12 @@ extension SuggestionViewController : SuggestionDelegate{
         navigationItem.title = title
         self.typeLabel.isHidden = !hiddenType
         self.typeImageView.isHidden = !hiddenType
+    }
+    
+    func showError(errorMessage : String){
+        let message = errorMessage
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true, completion: nil)
     }
 }
