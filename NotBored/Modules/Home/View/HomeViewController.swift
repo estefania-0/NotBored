@@ -9,6 +9,7 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
+    // MARK: Elementos de la vista
     private lazy var scrollView: UIScrollView = {
         let aScrollView = UIScrollView()
         aScrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,8 +48,11 @@ final class HomeViewController: UIViewController {
         aTextField.translatesAutoresizingMaskIntoConstraints = false
         aTextField.font = UIFont.systemFont(ofSize: 15)
         aTextField.borderStyle = UITextField.BorderStyle.roundedRect
+        aTextField.keyboardType = UIKeyboardType.numberPad
         return aTextField
     }()
+    
+    
     
     private lazy var startButton: UIButton = {
         let aButton = UIButton()
@@ -80,9 +84,22 @@ final class HomeViewController: UIViewController {
         setupView()
         setupConstraints()
         
+       let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapGesture)
     }
     
-    // MARK: View Build
+    //Oculta Navigation Bar
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    // MARK: Metodos de la vista
     private func setupView(){
         
         self.view.addSubview(scrollView)
@@ -93,7 +110,7 @@ final class HomeViewController: UIViewController {
         self.contentView.addSubview(startButton)
         self.contentView.addSubview(tycButton)
         
-        self.view.backgroundColor = UIColor(red: 218/255, green: 244/255, blue: 254/255, alpha: 1.00)
+        self.view.backgroundColor = UIColor(named: "Background")
         
         startButton.addTarget(self, action: #selector(buttonPressed), for: .touchDown)
 
@@ -104,14 +121,24 @@ final class HomeViewController: UIViewController {
     @objc func buttonPressed () {
         
         let service = SuggestionService.shared
+
         guard let number = Int(participantsTextField.text!) else { return }
         service.setParticipants(participants: number)
         
+
+        service.setParticipants(participants: 1)
+
         let sc = ActivitiesViewController()
+         
         self.navigationController?.pushViewController(sc, animated: true)
-        self.navigationItem.backButtonTitle = ""
-        self.navigationController?.navigationBar.tintColor = UIColor.black
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Arial Bold", size: 30)!]
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.backgroundColor = UIColor(named: "BtnAndNav")
+        navBarAppearance.titleTextAttributes = [NSAttributedString.Key.font:UIFont.systemFont(ofSize:35,weight:.bold)]
+        navigationController?.navigationBar.standardAppearance=navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        navigationController?.navigationBar.topItem?.backButtonTitle = ""
+        navigationController?.navigationBar.tintColor = .black
 
     }
     
@@ -121,6 +148,7 @@ final class HomeViewController: UIViewController {
         self.present(tycc, animated: true)
     }
     
+    // MARK: Constraints
     private func setupConstraints(){
         NSLayoutConstraint.activate([
             
