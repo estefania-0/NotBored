@@ -7,24 +7,6 @@
 import Alamofire
 import Foundation
 
-struct Activity: Codable {
-    let activity: String
-    let accessibility: Double
-    let type: String
-    let participants: Int
-    let price: Double
-    let link: String
-    let key: String
-}
-
-//    protocol ApiResponse {
-//        var activity: String {get}
-//        var accessibility: Decimal {get}
-//        var type: String {get}
-//        var participants: Int {get}
-//        var price: Decimal {get}
-//    }
-
 final class SuggestionService {
 
     static let shared = SuggestionService()
@@ -47,7 +29,7 @@ final class SuggestionService {
         return result
     }
     
-    func getActivity(success: @escaping (Activity)->(), onError: @escaping (String)->()) -> Void{
+    func getActivity(success: @escaping (NotBored)->(), onError: @escaping (String)->()) -> Void{
         
         var parameters : [String: String] = [:]
         if category != nil {
@@ -65,7 +47,7 @@ final class SuggestionService {
                     if let data = data {
                         let activity = try
                         
-                        JSONDecoder().decode(Activity.self, from: data)
+                        JSONDecoder().decode(NotBored.self, from: data)
                         success(activity)
                     }
                 } catch {

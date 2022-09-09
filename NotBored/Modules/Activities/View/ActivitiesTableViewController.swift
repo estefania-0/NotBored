@@ -23,8 +23,9 @@ class ActivitiesViewController: UIViewController, UITableViewDataSource, UITable
     
     // MARK: Nav Bar
     override func viewWillLayoutSubviews() {
-         
-        self.navigationItem.title =  "Activities"
+        self.navigationItem.title = "Activities"
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 20/255, green: 156/255, blue: 248/255, alpha: 1.00) //Agregar
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 20/255, green: 156/255, blue: 248/255, alpha: 1.00) //agregar
         self.navigationItem.rightBarButtonItem = UIBarButtonItem( image: UIImage(systemName: "shuffle"), style: .done, target: self, action: #selector(onRightButtonBeenTaped))
         self.navigationItem.backButtonTitle = ""
     }

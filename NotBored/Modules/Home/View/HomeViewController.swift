@@ -65,6 +65,13 @@ final class HomeViewController: UIViewController {
         aButton.setTitle("Terms and Conditions", for: .normal)
         aButton.setTitleColor(UIColor .black, for: .normal)
 
+        let attributedString = NSAttributedString(string: NSLocalizedString("Terms and Conditions", comment: ""), attributes:[
+            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 20.0),
+            NSAttributedString.Key.foregroundColor : UIColor.black,
+            NSAttributedString.Key.underlineStyle:1.0
+        ])
+        aButton.setAttributedTitle(attributedString, for: .normal)
+        
         return aButton
     }()
     
@@ -97,8 +104,8 @@ final class HomeViewController: UIViewController {
     @objc func buttonPressed () {
         
         let service = SuggestionService.shared
-        guard let number = participantsTextField.text else { return }
-        service.setParticipants(participants: Int(number)!)
+        guard let number = Int(participantsTextField.text!) else { return }
+        service.setParticipants(participants: number)
         
         let sc = ActivitiesViewController()
         self.navigationController?.pushViewController(sc, animated: true)
@@ -110,6 +117,7 @@ final class HomeViewController: UIViewController {
     
     @objc func tycPressed () {
         let tycc = TyCViewController()
+        tycc.modalPresentationStyle = .fullScreen
         self.present(tycc, animated: true)
     }
     
@@ -154,6 +162,4 @@ final class HomeViewController: UIViewController {
             tycButton.heightAnchor.constraint(equalToConstant: 48),
         ])
     }
-    
-    
 }

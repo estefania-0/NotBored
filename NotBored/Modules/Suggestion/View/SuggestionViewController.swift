@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SuggestionDelegate{
-    func setActivity(_ activity: ActivityDto)
+    func setActivity(_ activity: Activity)
     func setTitle(title: String, hiddenType: Bool)
     func showError(errorMessage : String)
 }
@@ -260,7 +260,7 @@ class SuggestionViewController: UIViewController {
 }
 
 extension SuggestionViewController : SuggestionDelegate{
-    func setActivity(_ activity: ActivityDto) {
+    func setActivity(_ activity: Activity) {
         self.activity = activity.activity
         self.price = activity.price.toString()
         self.participants = activity.participants

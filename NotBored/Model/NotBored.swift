@@ -7,9 +7,12 @@
 
 import Foundation
 
-struct notBored: Codable{
-    var activity, type: String
-    var participants:Int
-    var price: Double
-    var key: Int
+struct NotBored: Codable {
+    let activity: String
+    let accessibility: Double
+    let type: String
+    let participants: Int
+    let price: Double
+    let link: String
+    let key: String
 }
