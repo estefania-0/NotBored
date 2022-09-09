@@ -54,7 +54,7 @@ final class SuggestionService {
             parameters["type"] = "\(category!.lowercased())"
         }
         
-        //parameters["participants"] = "\(participants)"
+        parameters["participants"] = "\(participants)"
                         
         let request = AF.request("http://www.boredapi.com/api/activity", method: .get,parameters: parameters,  encoding: URLEncoding.queryString)
         

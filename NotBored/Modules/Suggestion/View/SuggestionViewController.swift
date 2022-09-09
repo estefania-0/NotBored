@@ -62,6 +62,17 @@ class SuggestionViewController: UIViewController {
         return aLabel
     }()
     
+    private lazy var participantsImageView: UIImageView = {
+        let aImageView = UIImageView()
+        //aImageView.backgroundColor = .white
+        aImageView.clipsToBounds = true
+        aImageView.translatesAutoresizingMaskIntoConstraints = false
+        let sizeConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold, scale: .large)
+        let image = UIImage(systemName: "person.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal).withConfiguration(sizeConfig)
+        aImageView.image = image
+        return aImageView
+    }()
+    
     private lazy var participantsLabel: UILabel = {
         let aLabel = UILabel()
         aLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -80,6 +91,17 @@ class SuggestionViewController: UIViewController {
         return aLabel
     }()
     
+    private lazy var priceImageView: UIImageView = {
+        let aImageView = UIImageView()
+        //aImageView.backgroundColor = .white
+        aImageView.clipsToBounds = true
+        aImageView.translatesAutoresizingMaskIntoConstraints = false
+        let sizeConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold, scale: .large)
+        let image = UIImage(systemName: "dollarsign.circle.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal).withConfiguration(sizeConfig)
+        aImageView.image = image
+        return aImageView
+    }()
+    
     private lazy var priceLabel: UILabel = {
         let aLabel = UILabel()
         aLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -96,6 +118,16 @@ class SuggestionViewController: UIViewController {
         aLabel.font = UIFont.systemFont(ofSize: 25)
         aLabel.textAlignment = .right
         return aLabel
+    }()
+    
+    private lazy var typeImageView: UIImageView = {
+        let aImageView = UIImageView()
+        aImageView.clipsToBounds = true
+        aImageView.translatesAutoresizingMaskIntoConstraints = false
+        let sizeConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold, scale: .large)
+        let image = UIImage(systemName: "list.bullet")?.withTintColor(.black, renderingMode: .alwaysOriginal).withConfiguration(sizeConfig)
+        aImageView.image = image
+        return aImageView
     }()
     
     private lazy var typeLabel: UILabel = {
@@ -137,15 +169,19 @@ class SuggestionViewController: UIViewController {
         scrollView.addSubview(contentView)
         contentView.addSubview(activityLabel)
         
+        contentView.addSubview(participantsImageView)
         contentView.addSubview(participantsLabel)
         contentView.addSubview(countParticipantsLabel)
         
+        contentView.addSubview(priceImageView)
         contentView.addSubview(priceLabel)
         contentView.addSubview(valuePriceLabel)
         
+        contentView.addSubview(typeImageView)
         contentView.addSubview(typeLabel)
         
         contentView.addSubview(tryAnotherButton)
+        
 
         // Estilos
         self.view.backgroundColor = UIColor(red: 218/255, green: 244/255, blue: 254/255, alpha: 1.00)
@@ -175,25 +211,37 @@ class SuggestionViewController: UIViewController {
             activityLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:  16),
             activityLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -16),
             
+            //participantsImageView
+            participantsImageView.topAnchor.constraint(equalTo: activityLabel.bottomAnchor, constant: 40),
+            participantsImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            
             //participantsLabel
-            participantsLabel.topAnchor.constraint(equalTo: activityLabel.bottomAnchor, constant: 40),
-            participantsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 30),
+            participantsLabel.topAnchor.constraint(equalTo: participantsImageView.topAnchor),
+            participantsLabel.leadingAnchor.constraint(equalTo: participantsImageView.trailingAnchor,constant: 16),
             
             //countParticipantsLabel
             countParticipantsLabel.topAnchor.constraint(equalTo: participantsLabel.topAnchor),
             countParticipantsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -30),
             
-            //priceLabel
-            priceLabel.topAnchor.constraint(equalTo: participantsLabel.bottomAnchor,constant: 16),
-            priceLabel.leadingAnchor.constraint(equalTo: participantsLabel.leadingAnchor),
+            //priceImageView
+            priceImageView.topAnchor.constraint(equalTo: participantsImageView.bottomAnchor, constant: 40),
+            priceImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
             
             //priceLabel
+            priceLabel.topAnchor.constraint(equalTo: priceImageView.topAnchor),
+            priceLabel.leadingAnchor.constraint(equalTo: priceImageView.trailingAnchor, constant: 16),
+            
+            //valuePriceLabel
             valuePriceLabel.topAnchor.constraint(equalTo: priceLabel.topAnchor),
             valuePriceLabel.trailingAnchor.constraint(equalTo: countParticipantsLabel.trailingAnchor),
 
-            //categoryLabel
-            typeLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor,constant: 16),
-            typeLabel.leadingAnchor.constraint(equalTo: participantsLabel.leadingAnchor),
+            //typeImageView
+            typeImageView.topAnchor.constraint(equalTo: priceImageView.bottomAnchor, constant: 40),
+            typeImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            
+            //typeLabel
+            typeLabel.topAnchor.constraint(equalTo: typeImageView.topAnchor),
+            typeLabel.leadingAnchor.constraint(equalTo: typeImageView.trailingAnchor, constant: 16),
             
             //butoon
             tryAnotherButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -222,5 +270,6 @@ extension SuggestionViewController : SuggestionDelegate{
     func setTitle(title: String, hiddenType: Bool) {
         navigationItem.title = title
         self.typeLabel.isHidden = !hiddenType
+        self.typeImageView.isHidden = !hiddenType
     }
 }
